@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Meal {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,5 +14,7 @@ public class User {
 	 
 	String name;
 	
-	String role;
+	double price;
+	
+	int restaurantId;
 }
