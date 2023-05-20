@@ -6,13 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User {
-	
+public class Runner {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int Id;
 	 
 	String name;
 	
-	String role;
+	String status;
+	
+	double delivery_fees;
 }
