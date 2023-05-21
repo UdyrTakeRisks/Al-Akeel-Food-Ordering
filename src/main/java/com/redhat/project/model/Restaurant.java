@@ -24,4 +24,5 @@ public class Restaurant {
 	
 	@OneToMany(mappedBy="restaurant")
 	Set<Order> orders;
+	
 }
