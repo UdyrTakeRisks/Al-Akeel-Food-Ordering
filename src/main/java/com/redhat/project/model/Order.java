@@ -12,21 +12,57 @@ public class Order {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int Id;
+	private int Id;
 	
-	String[] Item;
+	private String[] Items;
 	
-	double total_price;
+	private double total_price;
 	
 	@ManyToOne
 	@JoinColumn(name="runnerId")
-	Runner runner; 
+	private Runner runner; 
 	
 	@ManyToOne
 	@JoinColumn(name="restaurantId")
-	Restaurant restaurant; 
+	private Restaurant restaurant; 
 	
 	
-	String order_status; // preparing, delivered, canceled
+	private String order_status; // preparing, delivered, canceled
 	
+	
+	//getters 
+	
+	public int getId() {
+		return Id;
+	}
+	
+	public String[] getItem() {
+		return Items;
+	}
+	
+	public double getTotalPrice() {
+		return total_price;
+	}
+	
+	public String getOrderStatus() {
+		return order_status;
+	}
+	
+	//setters
+	
+	public void setId(int Id) {
+		this.Id = Id;
+	}
+	
+	public void setItem(String[] Items) {
+		this.Items = Items;
+	}
+	
+	public void setPrice(double total_price) {
+		this.total_price = total_price; 
+	}
+
+	public void setOrderStatus(String order_status) {
+		this.order_status = order_status;
+	}  
 }

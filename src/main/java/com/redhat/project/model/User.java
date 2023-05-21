@@ -15,4 +15,33 @@ public class User {
 	String name;
 	
 	String role; 
+	
+	//getters  
+	
+	public int getId() {
+		return Id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+	 
+	//setters
+	
+	public void setId(int Id) {
+		this.Id = Id;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 }
