@@ -13,16 +13,46 @@ public class Restaurant {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int Id;
+	private int Id;
 	 
-	String name;
+	private String name;
 	
-	int ownerId;
+	private int ownerId;
 	
 	@OneToMany(mappedBy="restaurant") 
-	Set<Meal> list_of_meals;  
+	private Set<Meal> list_of_meals;  
 	
 	@OneToMany(mappedBy="restaurant")
-	Set<Order> orders;
+	private Set<Order> orders;
+	
+	
+	//getters  
+	
+	public int getId() {
+		return Id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public int getOwnerId() {
+		return ownerId;
+	}
+	
+	//setters
+	
+	public void setId(int Id) {
+		this.Id = Id;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setOwnerId(int ownerId) {
+		this.ownerId = ownerId; 
+	}
 	
 }
+ 

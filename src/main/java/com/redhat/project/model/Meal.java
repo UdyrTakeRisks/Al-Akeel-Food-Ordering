@@ -12,15 +12,43 @@ public class Meal {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int Id;
+	private int Id;
 	 
-	String name;
+	private String name;
 	
-	double price;
+	private double price;
 	
 	
 	@ManyToOne 
 	@JoinColumn(name="restaurantId")
-	Restaurant restaurant; 
+	private Restaurant restaurant; 
+	
+	//getters  
+	
+	public int getId() {
+		return Id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	//setters
+	
+	public void setId(int Id) {
+		this.Id = Id;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	 
+	public void setPrice(double price) {
+		this.price = price;
+	}
 }
  
