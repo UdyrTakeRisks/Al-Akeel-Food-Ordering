@@ -1,7 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE web-app PUBLIC
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+   <!--  Add context param -->
+  <context-param>
+  		  <param-name>resteasy.role.based.security</param-name>
+  		  <param-value>true</param-value>
+  </context-param>
+  
+   <!--  Add security constraint -->
+  <security-constraint>
+  		  <web-resource-collection>
+  		  		  <web-resource-name>REST Resources</web-resource-name>
+  		  		  <url-pattern>/api/*</url-pattern>
+  		  </web-resource-collection>
+  </security-constraint>
+  
+  
+  <security-constraint>
+          <web-resource-collection>
+                  <web-resource-name>All resources</web-resource-name>
+                  <url-pattern>/api/*</url-pattern>
+          </web-resource-collection>
+          <auth-constraint>
+                  <role-name>Customer</role-name>
+                  <role-name>RestaurantOwner</role-name>
+                  <role-name>Runner</role-name>
+          </auth-constraint>
+  </security-constraint>
+  
+   <!-- Add login config -->
+  <login-config>
+	      <auth-method>BASIC</auth-method>
+	      <realm-name>ApplicationRealm</realm-name> 
+  </login-config>
+  
+   <!--  Add security role -->
+  <security-role>
+          <role-name>Customer</role-name>
+  </security-role>
+  <security-role>
+          <role-name>RestaurantOwner</role-name>
+  </security-role>
+  <security-role>
+          <role-name>Runner</role-name>
+  </security-role>
 </web-app>
+
