@@ -1,11 +1,14 @@
 package com.redhat.project.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Order {
@@ -14,7 +17,8 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	
-	private String[] Items;
+	@OneToMany(mappedBy="order")
+	private Set<Meal> Items;
 	
 	private double total_price;
 	
@@ -36,9 +40,9 @@ public class Order {
 		return Id;
 	}
 	
-	public String[] getItem() {
-		return Items;
-	}
+//	public String[] getItem() {
+//		return Items;
+//	}
 	
 	public double getTotalPrice() {
 		return total_price;
@@ -54,9 +58,9 @@ public class Order {
 		this.Id = Id;
 	}
 	
-	public void setItem(String[] Items) {
-		this.Items = Items;
-	}
+//	public void setItem(String[] Items) {
+//		this.Items = Items;
+//	}
 	
 	public void setPrice(double total_price) {
 		this.total_price = total_price; 

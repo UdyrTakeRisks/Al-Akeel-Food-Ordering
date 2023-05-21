@@ -23,6 +23,10 @@ public class Meal {
 	@JoinColumn(name="restaurantId")
 	private Restaurant restaurant; 
 	
+	@ManyToOne
+	@JoinColumn(name="orderId")
+	private Order order;
+	
 	//getters  
 	
 	public int getId() {
