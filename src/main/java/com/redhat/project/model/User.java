@@ -11,8 +11,8 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int Id;
-	 
+	  
 	String name;
 	
-	String role;
+	String role; 
 }

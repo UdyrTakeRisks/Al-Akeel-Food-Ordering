@@ -1,9 +1,12 @@
 package com.redhat.project.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Runner {
@@ -13,7 +16,11 @@ public class Runner {
 	 
 	String name;
 	
-	String status;
+	String status; // available, busy
 	
-	double delivery_fees;
+	double delivery_fees; 
+	
+	@OneToMany(mappedBy="runner")
+	Set<Order> orders; 
 }
+ 

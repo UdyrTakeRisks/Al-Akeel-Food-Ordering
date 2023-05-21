@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Order {
@@ -16,10 +18,15 @@ public class Order {
 	
 	double total_price;
 	
-	int runnerId;
+	@ManyToOne
+	@JoinColumn(name="runnerId")
+	Runner runner; 
 	
-	int restaurantId;
+	@ManyToOne
+	@JoinColumn(name="restaurantId")
+	Restaurant restaurant; 
 	
-	String order_status;
+	
+	String order_status; // preparing, delivered, canceled
 	
 }
