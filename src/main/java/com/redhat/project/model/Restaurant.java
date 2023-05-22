@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 public class Restaurant {    
@@ -25,10 +26,11 @@ public class Restaurant {
 	private int ownerId;
 	
 	
-	@OneToMany(mappedBy="restaurant", fetch=FetchType.EAGER, cascade = CascadeType.PERSIST) 
+	@OneToMany(mappedBy="restaurant", fetch=FetchType.EAGER, cascade = CascadeType.ALL) 
 	@JsonProperty("listOfMeals") 
 	//@JsonIgnore
-	private Set<Meal> listOfMeals;   
+	//@JsonDeserialize  
+	private Set<Meal> listOfMeals;    
 	
 //	@OneToMany(mappedBy="restaurant")
 //	@JsonIgnore
@@ -75,6 +77,7 @@ public class Restaurant {
 	public void setMeals(Set<Meal> listOfMeals) {
 		this.listOfMeals = listOfMeals;
 	}
+	
 	
 //	public void setOrders(Set<Order> orders) {
 //		this.orders = orders;

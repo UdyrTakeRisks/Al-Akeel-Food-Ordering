@@ -19,6 +19,7 @@ import javax.ws.rs.core.Response;
 import com.redhat.project.data.MealRepository;
 import com.redhat.project.data.RestaurantRepository;
 import com.redhat.project.model.Meal;
+import com.redhat.project.model.Order;
 import com.redhat.project.model.Restaurant;
 
 
@@ -41,23 +42,27 @@ public class RestaurantRESTService {
 	public Restaurant createRestaurantMenu(Restaurant restaurant, Set<Meal> meals) {
 		
         mealRepo.saveMeals(restaurant, meals);
- 		restaurantRepo.saveRestaurant(restaurant); 
-		return restaurant;
+ 		restaurantRepo.saveRestaurant(restaurant, meals);  
+		return restaurant; 
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("editMenu")
-	public void editRestaurantMenu() {
+	@Path("editMenu/{Id}")
+	public Set<Meal> editRestaurantMenu(Set<Meal> meals , @PathParam("Id") int Id) {
+		Restaurant restaurant = restaurantRepo.findById(Id);
+		if(restaurant.getId() == Id)
+			mealRepo.editMeals(meals);
 		
+		return meals; 
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getDetails/{Id}")
-	public Restaurant getRestaurantDetails(@PathParam("Id") int id) {
-		Restaurant restaurant = restaurantRepo.findById(id);
+	public Restaurant getRestaurantDetails(@PathParam("Id") int Id) {
+		Restaurant restaurant = restaurantRepo.findById(Id);
 		if(restaurant == null) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
@@ -68,7 +73,14 @@ public class RestaurantRESTService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("createReport/{Id}")
-	public void createRestaurantReport() {
+	public void createRestaurantReport(@PathParam("Id") int Id) {
+		Restaurant restaurant = restaurantRepo.findById(Id);
+		Order order;
+		double SumOfAllOrders = 0.0;
+		int NumOfCompletedOrders = 0 , NumOfCanceledOrders = 0;
+		//if(order.getOrderStatus() == "delivered") {
+			//SumOfAllOrders += restaurant.getOrders();
+		//}
 		
 	}
 	

@@ -24,10 +24,27 @@ public class MealRepository {
 		 try {
 		        if (meals != null) {     
 		            
+		        	//for(Meal meal : meals) {
+		        		//entityManager.merge(meal); 
+		        		//restaurant.setMeals(meals);
+		        	entityManager.persist(restaurant); 
+		        		//entityManager.persist(meal); 
+		        	//}
+		        	entityManager.persist(meals); 
+		        }
+		    } catch (Exception e) {
+		        throw new EJBException(e); 
+		  }
+	}
+	
+	public void editMeals(Set<Meal> meals) {
+		 try {
+		        if (meals != null) {     
+		            
 		        	for(Meal meal : meals) {
 		        		//entityManager.merge(meal); 
-		        		meal.setRestaurant(restaurant);
-		        		entityManager.persist(meal); 
+		        		//meal.setRestaurant(restaurant);
+		        		entityManager.merge(meal); 
 		        	}
 		        }
 		    } catch (Exception e) {
