@@ -1,5 +1,6 @@
 package com.redhat.project.rest;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -21,7 +22,7 @@ import com.redhat.project.model.Restaurant;
 
 @Path("/")
 @Stateless
-//@RolesAllowed("Customer")
+@RolesAllowed("Customer")
 public class CustomerRESTService {
 	
 	@Inject
@@ -33,14 +34,14 @@ public class CustomerRESTService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/createOrder")
+	@Path("createOrder")
 	public void createOrder() {
 		
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/listOrders/{id}") 
+	@Path("listOrders/{id}") 
 	public List<Order> listAllOrders(@PathParam("id") int id) {
 		return orderRepo.listAllOrdersForCustomer(id); // !!!!
 	}
@@ -56,7 +57,7 @@ public class CustomerRESTService {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/listRestaurants") 
+	@Path("listRestaurants") 
 	public List<Restaurant> listAllRestaurants() {
 		return restaurantRepo.getAllRestaurants();
 	}

@@ -31,6 +31,17 @@ public class MealRepository {
 		        throw new EJBException(e); 
 		  }
 	}
-
 	
+	public void editMeals(Set<Meal> meals, Restaurant restaurant) {
+		 try {
+		        if (meals != null) {     
+		            
+		        	for(Meal meal : restaurant.getMeals()) {
+		        		entityManager.merge(meal);
+		        	}
+		        }
+		 } catch (Exception e) {
+		      throw new EJBException(e); 
+		  }
+	}
 }
