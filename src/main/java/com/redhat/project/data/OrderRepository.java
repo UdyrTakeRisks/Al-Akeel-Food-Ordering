@@ -1,8 +1,8 @@
 package com.redhat.project.data;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.redhat.project.model.Order;
@@ -15,12 +15,11 @@ public class OrderRepository {
 	
 	User user;
 	
-	@Inject
+	@PersistenceContext    
 	private EntityManager entityManager;
 	
 	public List<Order> listAllOrdersForCustomer(int id) {
-		
-		
+		 
 		TypedQuery<Order> query =
 				entityManager.createQuery("SELECT i FROM Order i where i.id = :id", Order.class);
 		query.setParameter("id", id);

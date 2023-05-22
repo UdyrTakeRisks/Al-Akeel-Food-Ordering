@@ -41,6 +41,14 @@ public class Meal {
 		return price;
 	}
 	
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+	
+	public Order getOrder() {
+		return order;
+	}
+	
 	//setters
 	
 	public void setId(int Id) {
@@ -53,6 +61,14 @@ public class Meal {
 	 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+	
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 }
  

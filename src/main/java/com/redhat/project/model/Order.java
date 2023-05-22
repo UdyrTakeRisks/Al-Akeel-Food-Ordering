@@ -40,14 +40,22 @@ public class Order {
 		return Id;
 	}
 	
-//	public String[] getItem() {
-//		return Items;
-//	}
+	public Set<Meal> getItems() {
+		return Items;
+	}
 	
 	public double getTotalPrice() {
 		return total_price;
 	}
 	
+	public Runner getRunner() {
+		return runner;
+	}
+	
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+	 
 	public String getOrderStatus() {
 		return order_status;
 	}
@@ -58,12 +66,20 @@ public class Order {
 		this.Id = Id;
 	}
 	
-//	public void setItem(String[] Items) {
-//		this.Items = Items;
-//	}
-	
-	public void setPrice(double total_price) {
+	public void setItems(Set<Meal> Items) {
+		this.Items = Items; 
+	}
+	 
+	public void setTotalPrice(double total_price) {
 		this.total_price = total_price; 
+	}
+	
+	public void setRunner(Runner runner) {
+		this.runner = runner;
+	}
+	
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 
 	public void setOrderStatus(String order_status) {
