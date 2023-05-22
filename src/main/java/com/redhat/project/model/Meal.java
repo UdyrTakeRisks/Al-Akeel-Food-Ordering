@@ -1,36 +1,41 @@
 package com.redhat.project.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Meal {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	 
 	private String name;
 	
 	private double price;
 	
 	
-	@ManyToOne 
+	@ManyToOne(fetch = FetchType.EAGER)  
 	@JoinColumn(name="restaurantId")
+	//@JsonIgnore
 	private Restaurant restaurant; 
 	
-	@ManyToOne
-	@JoinColumn(name="orderId")
-	private Order order;
+//	@ManyToOne
+//	@JoinColumn(name="orderId") 
+//	@JsonIgnore 
+//	private Order order;
 	
 	//getters  
 	
 	public int getId() {
-		return Id;
+		return id;
 	}
 	
 	public String getName() {
@@ -45,14 +50,14 @@ public class Meal {
 		return restaurant;
 	}
 	
-	public Order getOrder() {
-		return order;
-	}
+//	public Order getOrder() {
+//		return order;
+//	}
 	
 	//setters
 	
-	public void setId(int Id) {
-		this.Id = Id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public void setName(String name) {
@@ -67,8 +72,8 @@ public class Meal {
 		this.restaurant = restaurant;
 	}
 	
-	public void setOrder(Order order) {
-		this.order = order;
-	}
+//	public void setOrder(Order order) {
+//		this.order = order;
+//	}
 }
  

@@ -15,10 +15,10 @@ public class Order {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	
-	@OneToMany(mappedBy="order")
-	private Set<Meal> Items;
+//	@OneToMany(mappedBy="order")
+//	private Set<Meal> Items;
 	
 	private double total_price;
 	
@@ -37,12 +37,12 @@ public class Order {
 	//getters 
 	
 	public int getId() {
-		return Id;
+		return id;
 	}
 	
-	public Set<Meal> getItems() {
-		return Items;
-	}
+//	public Set<Meal> getItems() {
+//		return Items;
+//	}
 	
 	public double getTotalPrice() {
 		return total_price;
@@ -62,13 +62,13 @@ public class Order {
 	
 	//setters
 	
-	public void setId(int Id) {
-		this.Id = Id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
-	public void setItems(Set<Meal> Items) {
-		this.Items = Items; 
-	}
+//	public void setItems(Set<Meal> Items) {
+//		this.Items = Items; 
+//	}
 	 
 	public void setTotalPrice(double total_price) {
 		this.total_price = total_price; 

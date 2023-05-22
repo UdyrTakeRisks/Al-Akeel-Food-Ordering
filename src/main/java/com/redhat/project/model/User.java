@@ -10,16 +10,16 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int Id;
-	  
-	String name;
+	int id;
+	   
+	String name; 
 	
 	String role; 
 	
 	//getters  
 	
 	public int getId() {
-		return Id;
+		return id;
 	}
 	
 	public String getName() {
@@ -33,7 +33,7 @@ public class User {
 	//setters
 	
 	public void setId(int Id) {
-		this.Id = Id;
+		this.id = Id;
 	}
 	
 	public void setName(String name) {
