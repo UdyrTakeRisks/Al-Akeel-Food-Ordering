@@ -9,19 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Runner {
+public class Runner { 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int Id;
+	private int Id;
 	 
-	String name;
+	private String name;
 	
-	String status; // available, busy
+	private String status; // available, busy
 	
-	double delivery_fees; 
+	private double delivery_fees; 
 	
 	@OneToMany(mappedBy="runner")
-	Set<Order> orders; 
+	private Set<Order> orders; 
 	
 	//getters  
 	
@@ -40,7 +40,12 @@ public class Runner {
 	public double getDeliveryFees() {
 		return delivery_fees;
 	}
-	 
+	
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	
+	
 	//setters
 	
 	public void setId(int Id) {
@@ -57,6 +62,10 @@ public class Runner {
 	
 	public void setDeliveryFees(double delivery_fees) {
 		this.delivery_fees = delivery_fees;
+	}
+	
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 }
  

@@ -40,6 +40,14 @@ public class Restaurant {
 		return ownerId;
 	}
 	
+	public Set<Meal> getMeals() {
+		return list_of_meals;
+	}
+	
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	
 	//setters
 	
 	public void setId(int Id) {
@@ -52,6 +60,14 @@ public class Restaurant {
 	
 	public void setOwnerId(int ownerId) {
 		this.ownerId = ownerId; 
+	}
+	
+	public void setMeals(Set<Meal> list_of_meals) {
+		this.list_of_meals = list_of_meals;
+	}
+	
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 	
 }
