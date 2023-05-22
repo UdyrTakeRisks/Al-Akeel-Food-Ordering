@@ -40,19 +40,11 @@ public class RestaurantRESTService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("createMenu")
-<<<<<<< HEAD
 	public String createRestaurantMenu(Restaurant restaurant) {
 		
         mealRepo.saveMeals(restaurant);
  		restaurantRepo.saveRestaurant(restaurant); 
 		return "Sent Successfully"; 
-=======
-	public void createRestaurantMenu(Restaurant restaurant) {
-		
-        mealRepo.saveMeals(restaurant);
- 		restaurantRepo.saveRestaurant(restaurant); 
-		//return restaurant;
->>>>>>> 952327bb0cc575cae351657b57b10d04a9f17088
 	}
 	
 	@PUT
