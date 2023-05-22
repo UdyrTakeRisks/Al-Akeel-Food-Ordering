@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -23,9 +22,11 @@ public class Meal {
 	private double price;
 	
 	
+	
+	
 	@ManyToOne(fetch = FetchType.EAGER)  
 	@JoinColumn(name="restaurantId")
-	//@JsonIgnore
+	@JsonIgnore
 	private Restaurant restaurant; 
 	
 //	@ManyToOne

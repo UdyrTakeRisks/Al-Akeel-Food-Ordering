@@ -1,7 +1,5 @@
 package com.redhat.project.rest;
 
-import java.util.Set;
-
 import javax.ejb.Stateless;
 
 import javax.inject.Inject;
@@ -18,7 +16,6 @@ import javax.ws.rs.core.Response;
 
 import com.redhat.project.data.MealRepository;
 import com.redhat.project.data.RestaurantRepository;
-import com.redhat.project.model.Meal;
 import com.redhat.project.model.Restaurant;
 
 
@@ -38,11 +35,11 @@ public class RestaurantRESTService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("createMenu")
-	public Restaurant createRestaurantMenu(Restaurant restaurant, Set<Meal> meals) {
+	public void createRestaurantMenu(Restaurant restaurant) {
 		
-        mealRepo.saveMeals(restaurant, meals);
+        mealRepo.saveMeals(restaurant);
  		restaurantRepo.saveRestaurant(restaurant); 
-		return restaurant;
+		//return restaurant;
 	}
 	
 	@PUT
