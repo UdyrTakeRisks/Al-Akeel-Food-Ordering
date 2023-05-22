@@ -39,11 +39,17 @@ public class RestaurantRESTService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("createMenu")
-	public Restaurant createRestaurantMenu(Restaurant restaurant, Set<Meal> meals) {
+	public void createRestaurantMenu(Restaurant restaurant) {
 		
+<<<<<<< HEAD
         mealRepo.saveMeals(restaurant, meals);
  		restaurantRepo.saveRestaurant(restaurant, meals);  
 		return restaurant; 
+=======
+        mealRepo.saveMeals(restaurant);
+ 		restaurantRepo.saveRestaurant(restaurant); 
+		//return restaurant;
+>>>>>>> 952327bb0cc575cae351657b57b10d04a9f17088
 	}
 	
 	@PUT

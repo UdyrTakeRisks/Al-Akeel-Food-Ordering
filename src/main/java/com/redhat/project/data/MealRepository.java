@@ -20,8 +20,9 @@ public class MealRepository {
 		return entityManager.find(Meal.class, id);
 	} 
 	
-	public void saveMeals(Restaurant restaurant, Set<Meal> meals) {
+	public void saveMeals(Restaurant restaurant) {
 		 try {
+<<<<<<< HEAD
 		        if (meals != null) {     
 		            
 		        	//for(Meal meal : meals) {
@@ -45,8 +46,13 @@ public class MealRepository {
 		        		//entityManager.merge(meal); 
 		        		//meal.setRestaurant(restaurant);
 		        		entityManager.merge(meal); 
+=======
+		        	for (Meal meal : restaurant.getMeals()) {
+		        	    meal.setRestaurant(restaurant);
+		        	   // entityManager.persist(meal); 
+>>>>>>> 952327bb0cc575cae351657b57b10d04a9f17088
 		        	}
-		        }
+		        
 		    } catch (Exception e) {
 		        throw new EJBException(e); 
 		  }
