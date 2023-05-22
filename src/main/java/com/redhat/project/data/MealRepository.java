@@ -20,16 +20,13 @@ public class MealRepository {
 		return entityManager.find(Meal.class, id);
 	} 
 	
-	public void saveMeals(Restaurant restaurant, Set<Meal> meals) {
+	public void saveMeals(Restaurant restaurant) {
 		 try {
-		        if (meals != null) {     
-		            
-		        	for(Meal meal : meals) {
-		        		//entityManager.merge(meal); 
-		        		meal.setRestaurant(restaurant);
-		        		entityManager.persist(meal); 
+		        	for (Meal meal : restaurant.getMeals()) {
+		        	    meal.setRestaurant(restaurant);
+		        	   // entityManager.persist(meal); 
 		        	}
-		        }
+		        
 		    } catch (Exception e) {
 		        throw new EJBException(e); 
 		  }
