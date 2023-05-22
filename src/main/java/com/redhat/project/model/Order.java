@@ -1,5 +1,6 @@
-// Order Class
 package com.redhat.project.model;
+
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Order {
@@ -20,13 +22,13 @@ public class Order {
 	
 	private double total_price;
 	
-	@ManyToOne
-	@JoinColumn(name="runnerId")
-	private Runner runner; 
+//	@ManyToOne
+//	@JoinColumn(name="runnerId")
+//	private Runner runner; 
 	
-	@ManyToOne
-	@JoinColumn(name="restaurantId")
-	private Restaurant restaurant; 
+//	@ManyToOne
+//	@JoinColumn(name="restaurantId")
+//	private Restaurant restaurant; 
 	
 	
 	private String order_status; // preparing, delivered, canceled
@@ -46,13 +48,13 @@ public class Order {
 		return total_price;
 	}
 	
-	public Runner getRunner() {
-		return runner;
-	}
+//	public Runner getRunner() {
+//		return runner;
+//	}
 	
-	public Restaurant getRestaurant() {
-		return restaurant;
-	}
+//	public Restaurant getRestaurant() {
+//		return restaurant;
+//	}
 	 
 	public String getOrderStatus() {
 		return order_status;
@@ -72,13 +74,13 @@ public class Order {
 		this.total_price = total_price; 
 	}
 	
-	public void setRunner(Runner runner) {
-		this.runner = runner;
-	}
+//	public void setRunner(Runner runner) {
+//		this.runner = runner;
+//	}
 	
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
+//	public void setRestaurant(Restaurant restaurant) {
+//		this.restaurant = restaurant;
+//	}
 
 	public void setOrderStatus(String order_status) {
 		this.order_status = order_status;

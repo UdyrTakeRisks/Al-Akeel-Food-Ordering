@@ -1,5 +1,6 @@
 package com.redhat.project.rest;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -13,7 +14,7 @@ import com.redhat.project.model.Runner;
 
 @Path("/")
 @Stateless
-//@RolesAllowed("Runner")
+@RolesAllowed("Runner")
 public class RunnerRESTService {
 	
 	@POST
