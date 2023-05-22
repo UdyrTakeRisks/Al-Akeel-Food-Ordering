@@ -22,41 +22,26 @@ public class MealRepository {
 	
 	public void saveMeals(Restaurant restaurant) {
 		 try {
-<<<<<<< HEAD
-		        if (meals != null) {     
-		            
-		        	//for(Meal meal : meals) {
-		        		//entityManager.merge(meal); 
-		        		//restaurant.setMeals(meals);
-		        	entityManager.persist(restaurant); 
-		        		//entityManager.persist(meal); 
-		        	//}
-		        	entityManager.persist(meals); 
-		        }
-		    } catch (Exception e) {
-		        throw new EJBException(e); 
-		  }
-	}
-	
-	public void editMeals(Set<Meal> meals) {
-		 try {
-		        if (meals != null) {     
-		            
-		        	for(Meal meal : meals) {
-		        		//entityManager.merge(meal); 
-		        		//meal.setRestaurant(restaurant);
-		        		entityManager.merge(meal); 
-=======
 		        	for (Meal meal : restaurant.getMeals()) {
 		        	    meal.setRestaurant(restaurant);
 		        	   // entityManager.persist(meal); 
->>>>>>> 952327bb0cc575cae351657b57b10d04a9f17088
 		        	}
 		        
 		    } catch (Exception e) {
 		        throw new EJBException(e); 
 		  }
 	}
-
 	
+	public void editMeals(Set<Meal> meals, Restaurant restaurant) {
+		 try {
+		        if (meals != null) {     
+		            
+		        	for(Meal meal : restaurant.getMeals()) {
+		        		entityManager.merge(meal);
+		        	}
+		        }
+		 } catch (Exception e) {
+		      throw new EJBException(e); 
+		  }
+	}
 }

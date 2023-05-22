@@ -16,10 +16,10 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.redhat.project.data.MealRepository;
 import com.redhat.project.data.RestaurantRepository;
 import com.redhat.project.model.Meal;
-import com.redhat.project.model.Order;
 import com.redhat.project.model.Restaurant;
 
 
@@ -39,36 +39,31 @@ public class RestaurantRESTService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("createMenu")
-	public void createRestaurantMenu(Restaurant restaurant) {
+	public String createRestaurantMenu(Restaurant restaurant) {
 		
-<<<<<<< HEAD
-        mealRepo.saveMeals(restaurant, meals);
- 		restaurantRepo.saveRestaurant(restaurant, meals);  
-		return restaurant; 
-=======
         mealRepo.saveMeals(restaurant);
  		restaurantRepo.saveRestaurant(restaurant); 
-		//return restaurant;
->>>>>>> 952327bb0cc575cae351657b57b10d04a9f17088
+		return "Sent Successfully"; 
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON) 
+	@JsonDeserialize
 	@Path("editMenu/{Id}")
-	public Set<Meal> editRestaurantMenu(Set<Meal> meals , @PathParam("Id") int Id) {
+	public Set<Meal> editRestaurantMenu(Set<Meal> meals, @PathParam("Id") int Id) {
 		Restaurant restaurant = restaurantRepo.findById(Id);
-		if(restaurant.getId() == Id)
-			mealRepo.editMeals(meals);
-		
-		return meals; 
+		if(restaurant.getId() == Id) {
+			mealRepo.editMeals(meals, restaurant);   
+		}
+		return restaurant.getMeals();   
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getDetails/{Id}")
-	public Restaurant getRestaurantDetails(@PathParam("Id") int Id) {
-		Restaurant restaurant = restaurantRepo.findById(Id);
+	public Restaurant getRestaurantDetails(@PathParam("Id") int id) {
+		Restaurant restaurant = restaurantRepo.findById(id);
 		if(restaurant == null) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
@@ -80,14 +75,13 @@ public class RestaurantRESTService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("createReport/{Id}")
 	public void createRestaurantReport(@PathParam("Id") int Id) {
-		Restaurant restaurant = restaurantRepo.findById(Id);
-		Order order;
-		double SumOfAllOrders = 0.0;
-		int NumOfCompletedOrders = 0 , NumOfCanceledOrders = 0;
-		//if(order.getOrderStatus() == "delivered") {
-			//SumOfAllOrders += restaurant.getOrders();
-		//}
-		
+//		Restaurant restaurant = restaurantRepo.findById(Id);
+//		Order order;
+//		double SumOfAllOrders = 0.0;
+//		int NumOfCompletedOrders = 0 , NumOfCanceledOrders = 0;
+//		//if(order.getOrderStatus() == "delivered") {
+//			//SumOfAllOrders += restaurant.getOrders();
+//		//} 
 	}
 	
 	

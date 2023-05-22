@@ -7,9 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import java.util.List;
-import java.util.Set;
 
-import com.redhat.project.model.Meal;
 import com.redhat.project.model.Restaurant;
 
 @ApplicationScoped
@@ -30,15 +28,10 @@ public class RestaurantRepository {
 		return query.getResultList(); 
 	}
 	
-	public void saveRestaurant(Restaurant restaurant, Set<Meal> meals) {
+	public void saveRestaurant(Restaurant restaurant) {
 		 try {
 		        if (restaurant != null) {
-		        	//restaurant.setMeals(meals);
-		        	//entityManager.merge(meals);
-		        	for(Meal meal : meals )
-		        		meal.setRestaurant(restaurant);
-		            
-		        	restaurant.setMeals(meals);
+		            entityManager.persist(restaurant); 
 		            //entityManager.persist(restaurant.getMeals());
 		        }
 		    } catch (Exception e) {
@@ -46,8 +39,7 @@ public class RestaurantRepository {
 		  }
 		//entityManager.merge(restaurant); 
 	} 
-	
-	
+	 
 	public void findRestaurant(Restaurant restaurant) {
 		entityManager.find(Restaurant.class, restaurant.getId()); 
 	}

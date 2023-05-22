@@ -33,14 +33,14 @@ public class CustomerRESTService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/createOrder")
+	@Path("createOrder")
 	public void createOrder() {
 		
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/listOrders/{id}") 
+	@Path("listOrders/{id}") 
 	public List<Order> listAllOrders(@PathParam("id") int id) {
 		return orderRepo.listAllOrdersForCustomer(id); // !!!!
 	}
@@ -56,7 +56,7 @@ public class CustomerRESTService {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/listRestaurants") 
+	@Path("listRestaurants") 
 	public List<Restaurant> listAllRestaurants() {
 		return restaurantRepo.getAllRestaurants();
 	}
