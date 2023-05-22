@@ -1,3 +1,4 @@
+// Meal Entity
 package com.redhat.project.model;
 
 import javax.persistence.Entity;
