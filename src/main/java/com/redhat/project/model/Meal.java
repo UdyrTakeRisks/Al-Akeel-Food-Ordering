@@ -24,6 +24,8 @@ public class Meal {
 	private double price;
 	
 	
+	
+	
 	@ManyToOne(fetch = FetchType.EAGER)  
 	@JoinColumn(name="restaurantId")
 	@JsonIgnore

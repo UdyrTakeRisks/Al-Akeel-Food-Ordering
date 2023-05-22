@@ -49,10 +49,15 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		<nature>org.jboss.tools.jst.web.kb.kbnature</nature>
 		<nature>org.jboss.tools.cdi.core.cdinature</nature>
 >>>>>>> origin/main
+=======
+		<nature>org.jboss.tools.jst.web.kb.kbnature</nature>
+		<nature>org.jboss.tools.cdi.core.cdinature</nature>
+>>>>>>> 952327bb0cc575cae351657b57b10d04a9f17088
 		<nature>org.hibernate.eclipse.console.hibernateNature</nature>
 	</natures>
 </projectDescription>
