@@ -1,6 +1,9 @@
 package com.redhat.project.rest;
 
+import java.util.Set;
+
 import javax.ejb.Stateless;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -13,7 +16,9 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.redhat.project.data.MealRepository;
 import com.redhat.project.data.RestaurantRepository;
+import com.redhat.project.model.Meal;
 import com.redhat.project.model.Restaurant;
 
 
@@ -25,12 +30,19 @@ public class RestaurantRESTService {
 	@Inject
 	private RestaurantRepository restaurantRepo;
 	
+	@Inject
+	private MealRepository mealRepo;
+	
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("createMenu")
-	public void createRestaurantMenu() {
+	public Restaurant createRestaurantMenu(Restaurant restaurant, Set<Meal> meals) {
 		
+        mealRepo.saveMeals(restaurant, meals);
+ 		restaurantRepo.saveRestaurant(restaurant); 
+		return restaurant;
 	}
 	
 	@PUT
@@ -44,12 +56,12 @@ public class RestaurantRESTService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("getDetails/{Id}")
-	public Restaurant getRestaurantDetails(@PathParam("Id") int Id) {
-		Restaurant restaurant = restaurantRepo.findById(Id);
+	public Restaurant getRestaurantDetails(@PathParam("Id") int id) {
+		Restaurant restaurant = restaurantRepo.findById(id);
 		if(restaurant == null) {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
-		return restaurant; 
+		return restaurant;  
 	}
 	
 	@POST

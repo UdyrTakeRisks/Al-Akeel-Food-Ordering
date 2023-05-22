@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 public class Runner { 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	 
 	private String name;
 	
@@ -20,13 +20,13 @@ public class Runner {
 	
 	private double delivery_fees; 
 	
-	@OneToMany(mappedBy="runner")
-	private Set<Order> orders; 
+//	@OneToMany(mappedBy="runner")
+//	private Set<Order> orders; 
 	
 	//getters  
 	
 	public int getId() {
-		return Id;
+		return id;
 	}
 	
 	public String getName() {
@@ -41,15 +41,15 @@ public class Runner {
 		return delivery_fees;
 	}
 	
-	public Set<Order> getOrders() {
-		return orders;
-	}
+//	public Set<Order> getOrders() {
+//		return orders;
+//	}
 	
 	
 	//setters
 	
-	public void setId(int Id) {
-		this.Id = Id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public void setName(String name) {
@@ -64,8 +64,8 @@ public class Runner {
 		this.delivery_fees = delivery_fees;
 	}
 	
-	public void setOrders(Set<Order> orders) {
-		this.orders = orders;
-	}
+//	public void setOrders(Set<Order> orders) {
+//		this.orders = orders;
+//	}
 }
  
