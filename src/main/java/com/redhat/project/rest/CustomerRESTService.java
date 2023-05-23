@@ -40,18 +40,15 @@ public class CustomerRESTService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-<<<<<<< HEAD
 	@Path("createOrder/{Id}")
 	public Order createOrder(Order order, @PathParam("Id") int Id) {
 		User user = new User();
 		userRepo.saveUser(user);   
 		user = userRepo.findUserById(Id); 
-=======
+
 	@Path("createOrder")
-	public void createOrder() {
->>>>>>> 87dd8f157f51ddb945a282a89d3eb60d943ab842
-		
-		if(user.getRole() == "Customer" /*&& order.getRestaurant().getId() == Id*/) {
+	public void createOrder() {		
+		if(user.getRole() == "Customer") {
 			orderRepo.saveOrder(order); 
 		}
 
@@ -61,11 +58,11 @@ public class CustomerRESTService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("listOrders/{id}") 
-<<<<<<< HEAD
+
 	public List<Order> listOrders(@PathParam("id") int id) {
-=======
+
 	public List<Order> listAllOrders(@PathParam("id") int id) {
->>>>>>> 87dd8f157f51ddb945a282a89d3eb60d943ab842
+
 		return orderRepo.listAllOrdersForCustomer(id); // !!!!
 	}
 	

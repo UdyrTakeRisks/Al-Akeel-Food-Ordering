@@ -30,7 +30,7 @@ public class Order {
 	@JsonIgnore
 	private double totalPrice;
 	
-<<<<<<< HEAD
+
 	@OneToOne
 	@JsonIgnore
 	@JoinColumn(name="runnerId")
@@ -39,15 +39,7 @@ public class Order {
 	@ManyToOne  
 	@JoinColumn(name="restaurantId")
 	private Restaurant restaurant;   // !!!!
-=======
-//	@ManyToOne
-//	@JoinColumn(name="runnerId")
-//	private Runner runner; 
-	
-//	@ManyToOne
-//	@JoinColumn(name="restaurantId")
-//	private Restaurant restaurant; 
->>>>>>> 87dd8f157f51ddb945a282a89d3eb60d943ab842
+
 	
 	@JsonProperty("orderStatus")
 	private String orderStatus; // preparing, delivered, canceled
@@ -71,7 +63,6 @@ public class Order {
 		return totalPrice;
 	}
 	
-<<<<<<< HEAD
 	@JsonIgnore
 	public Runner getRunner() {
 		return runner;
