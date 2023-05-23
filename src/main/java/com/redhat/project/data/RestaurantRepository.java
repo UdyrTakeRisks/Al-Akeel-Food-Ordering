@@ -40,8 +40,8 @@ public class RestaurantRepository {
 		//entityManager.merge(restaurant); 
 	} 
 	 
-	public void findRestaurant(Restaurant restaurant) {
-		entityManager.find(Restaurant.class, restaurant.getId()); 
-	}
+//	public void findRestaurant(Restaurant restaurant) {
+//		entityManager.find(Restaurant.class, restaurant.getId()); 
+//	}
 }
  

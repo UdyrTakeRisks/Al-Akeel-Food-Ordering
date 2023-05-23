@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Runner { 
@@ -20,8 +21,8 @@ public class Runner {
 	
 	private double delivery_fees; 
 	
-//	@OneToMany(mappedBy="runner")
-//	private Set<Order> orders; 
+	@OneToOne(mappedBy="runner")
+	private Order order; 
 	
 	//getters  
 	
@@ -35,15 +36,15 @@ public class Runner {
 	
 	public String getStatus() {
 		return status;
-	}
+	} 
 	
 	public double getDeliveryFees() {
 		return delivery_fees;
 	}
 	
-//	public Set<Order> getOrders() {
-//		return orders;
-//	}
+	public Order getOrder() {
+		return order;
+	}
 	
 	
 	//setters
@@ -64,8 +65,9 @@ public class Runner {
 		this.delivery_fees = delivery_fees;
 	}
 	
-//	public void setOrders(Set<Order> orders) {
-//		this.orders = orders;
-//	}
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+	
 }
  

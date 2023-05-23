@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,9 +31,10 @@ public class Restaurant {
 	//@JsonIgnore
 	private Set<Meal> listOfMeals;   
 	
-//	@OneToMany(mappedBy="restaurant")
-//	@JsonIgnore
-//	private Set<Order> orders;
+	@OneToMany(mappedBy="restaurant", fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)   
+	@Transient   
+	@JsonIgnore
+	private Set<Order> orders;  // !!!! 
 	
 	 
 	//getters  
@@ -54,9 +56,10 @@ public class Restaurant {
 		return listOfMeals;
 	}
 	
-//	public Set<Order> getOrders() {
-//		return orders;
-//	}
+	@JsonIgnore
+	public Set<Order> getOrders() {
+		return orders;
+	}
 	
 	//setters
 	
@@ -76,9 +79,9 @@ public class Restaurant {
 		this.listOfMeals = listOfMeals;
 	}
 	
-//	public void setOrders(Set<Order> orders) {
-//		this.orders = orders;
-//	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
 	
 }
  

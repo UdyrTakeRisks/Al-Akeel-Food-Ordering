@@ -2,6 +2,7 @@ package com.redhat.project.rest;
 
 import java.util.Set;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 
 import javax.inject.Inject;
@@ -24,7 +25,7 @@ import com.redhat.project.model.Restaurant;
 
 
 @Stateless
-//@RolesAllowed("RestaurantOwner")
+@RolesAllowed("RestaurantOwner")
 @Path("/") 
 public class RestaurantRESTService {
 	
@@ -51,12 +52,13 @@ public class RestaurantRESTService {
 	@Produces(MediaType.APPLICATION_JSON) 
 	@JsonDeserialize
 	@Path("editMenu/{Id}")
-	public Set<Meal> editRestaurantMenu(Set<Meal> meals, @PathParam("Id") int Id) {
+	public Set<Meal> editRestaurantMenu(Restaurant newRes, @PathParam("Id") int Id) {
 		Restaurant restaurant = restaurantRepo.findById(Id);
 		if(restaurant.getId() == Id) {
-			mealRepo.editMeals(meals, restaurant);   
-		}
-		return restaurant.getMeals();   
+			mealRepo.editMeals(newRes);
+			newRes.setMeals(restaurant.getMeals()); 
+		} 
+		return newRes.getMeals();     
 	}
 	
 	@GET

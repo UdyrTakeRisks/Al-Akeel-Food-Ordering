@@ -32,7 +32,7 @@ public class Meal {
 //	@ManyToOne
 //	@JoinColumn(name="orderId") 
 //	@JsonIgnore 
-//	private Order order;
+//	private Order order;  // !!!!
 	
 	//getters  
 	
@@ -52,6 +52,7 @@ public class Meal {
 		return restaurant;
 	}
 	
+//	@JsonIgnore
 //	public Order getOrder() {
 //		return order;
 //	}
@@ -77,5 +78,6 @@ public class Meal {
 //	public void setOrder(Order order) {
 //		this.order = order;
 //	}
+	
 }
  

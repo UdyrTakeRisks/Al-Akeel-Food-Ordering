@@ -1,5 +1,6 @@
 package com.redhat.project.data;
 
+import javax.ejb.EJBException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,5 +26,16 @@ public class OrderRepository {
 		query.setParameter("id", id);
 		
 		return query.getResultList(); 
+	}
+	
+	public void saveOrder(Order order) {
+		 try {
+		        if (order != null) {
+		            entityManager.persist(order);
+		            //order.setRestaurant(restaurant);
+		        }
+		    } catch (Exception e) {
+		        throw new EJBException(e); 
+		  }
 	}
 }

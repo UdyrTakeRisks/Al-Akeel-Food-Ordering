@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Order {
@@ -16,23 +20,31 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+                                             	
+//	@JsonProperty("Items")
+//	@JsonIgnore 
 //	@OneToMany(mappedBy="order")
-//	private Set<Meal> Items;
+//	private Set<Meal> Items;     // !!!!
 	
-	private double total_price;
+	@JsonProperty("totalPrice")
+	@JsonIgnore
+	private double totalPrice;
 	
-//	@ManyToOne
-//	@JoinColumn(name="runnerId")
-//	private Runner runner; 
+	@OneToOne
+	@JsonIgnore
+	@JoinColumn(name="runnerId")
+	private Runner runner; 
 	
-//	@ManyToOne
-//	@JoinColumn(name="restaurantId")
-//	private Restaurant restaurant; 
+	@ManyToOne  
+	@JoinColumn(name="restaurantId")
+	private Restaurant restaurant;   // !!!!
 	
+	@JsonProperty("orderStatus")
+	private String orderStatus; // preparing, delivered, canceled
 	
-	private String order_status; // preparing, delivered, canceled
-	
+	@ManyToOne 
+	@JoinColumn(name="userId")
+	private User user;
 	
 	//getters 
 	
@@ -40,24 +52,32 @@ public class Order {
 		return id;
 	}
 	
+//	@JsonIgnore
 //	public Set<Meal> getItems() {
 //		return Items;
 //	}
 	
 	public double getTotalPrice() {
-		return total_price;
+		return totalPrice;
 	}
 	
-//	public Runner getRunner() {
-//		return runner;
-//	}
+	@JsonIgnore
+	public Runner getRunner() {
+		return runner;
+	}
 	
-//	public Restaurant getRestaurant() {
-//		return restaurant;
-//	}
+	@JsonIgnore 
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
 	 
 	public String getOrderStatus() {
-		return order_status;
+		return orderStatus;
+	}
+	
+	@JsonIgnore
+	public User getUser() {
+		return user;
 	}
 	
 	//setters
@@ -67,22 +87,26 @@ public class Order {
 	}
 	
 //	public void setItems(Set<Meal> Items) {
-//		this.Items = Items; 
+//		this.Items = Items;  
 //	}
 	 
-	public void setTotalPrice(double total_price) {
-		this.total_price = total_price; 
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice; 
 	}
 	
-//	public void setRunner(Runner runner) {
-//		this.runner = runner;
-//	}
+	public void setRunner(Runner runner) {
+		this.runner = runner;
+	}
 	
-//	public void setRestaurant(Restaurant restaurant) {
-//		this.restaurant = restaurant;
-//	}
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
 
-	public void setOrderStatus(String order_status) {
-		this.order_status = order_status;
-	}  
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
