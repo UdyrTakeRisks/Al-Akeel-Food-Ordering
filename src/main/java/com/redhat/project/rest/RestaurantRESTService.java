@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.redhat.project.data.MealRepository;
 import com.redhat.project.data.RestaurantRepository;
 import com.redhat.project.model.Meal;
+import com.redhat.project.model.Order;
 import com.redhat.project.model.Restaurant;
 
 
@@ -72,20 +73,27 @@ public class RestaurantRESTService {
 		return restaurant;  
 	}
 	
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("createReport/{Id}")
-	public void createRestaurantReport(@PathParam("Id") int Id) {
-//		Restaurant restaurant = restaurantRepo.findById(Id);
-//		Order order;
-//		double SumOfAllOrders = 0.0;
-//		int NumOfCompletedOrders = 0 , NumOfCanceledOrders = 0;
-//		//if(order.getOrderStatus() == "delivered") {
-//			//SumOfAllOrders += restaurant.getOrders();
-//		//} 
-	}
-	
-	
+	public int createRestaurantReport(@PathParam("Id") int Id) {
+		
+		Restaurant restaurant = restaurantRepo.findById(Id);
+		int totalEarnings = 0;
+		int numOfCompletedOrders = 0;
+		int numOfCanceledOrders = 0;
+		for (Order order : restaurant.getOrders()) {
+			
+			if (order.getOrderStatus().equals("delivered")) {
+		        totalEarnings += order.getTotalPrice(); // Corrected method name
+		        numOfCompletedOrders++;
+		    } else if (order.getOrderStatus().equals("canceled")) {
+		    	
+		        numOfCanceledOrders++;
+		      }
+		}
+		return totalEarnings; 
+     }
+
 	
 }

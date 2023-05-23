@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Runner { 
@@ -19,10 +22,13 @@ public class Runner {
 	
 	private String status; // available, busy
 	
+	@JsonIgnore
 	private double delivery_fees; 
 	
 	@OneToOne(mappedBy="runner")
-	private Order order; 
+	@JsonIgnore
+	@Transient //imp
+	private Order order;  
 	
 	//getters  
 	

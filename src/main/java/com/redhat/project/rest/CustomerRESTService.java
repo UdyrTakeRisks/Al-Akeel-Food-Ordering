@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 
 import java.util.List;
 
+import com.redhat.project.data.MealRepository;
 import com.redhat.project.data.OrderRepository;
 import com.redhat.project.data.RestaurantRepository;
 import com.redhat.project.data.UserRepository;
@@ -36,6 +37,9 @@ public class CustomerRESTService {
 	@Inject
 	UserRepository userRepo;
 	
+	@Inject
+	MealRepository mealRepo;
+	
 	User user = new User();
 	
 	@POST
@@ -48,13 +52,15 @@ public class CustomerRESTService {
 		user = userRepo.findUserById(Id); 
 		
 		if(user.getRole() == "Customer" /*&& order.getRestaurant().getId() == Id*/) {
-			orderRepo.saveOrder(order); 
+			Restaurant res = restaurantRepo.findById(Id);
+			mealRepo.saveMeals(res);
+			orderRepo.saveOrder(order,res); 
 		}
-
+ 
 		return order;
 	}
 	
-	@SuppressWarnings("unchecked")
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("listOrders/{id}") 
@@ -62,7 +68,8 @@ public class CustomerRESTService {
 		user = userRepo.findUserById(id);
 		if(user.getRole() == "Customer" && user.getId() == id)
 			return orderRepo.listAllOrdersForCustomer(id); // !!!!
-		return (List<Order>) new IllegalArgumentException("Invalid Customer Id");
+		
+		return orderRepo.listAllOrdersForCustomer(id);  
 		
 	}
 	
@@ -73,7 +80,7 @@ public class CustomerRESTService {
 	@Path("editOrder")
 	public void editOrder(Order order) {
 		
-		//orderRepo.editOrder();
+		orderRepo.editOrder(order);  
 	}
 	
 	

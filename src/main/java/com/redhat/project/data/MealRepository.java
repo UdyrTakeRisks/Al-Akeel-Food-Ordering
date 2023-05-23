@@ -25,6 +25,7 @@ public class MealRepository {
 		        	for (Meal meal : restaurant.getMeals()) {
 		        	    meal.setRestaurant(restaurant);
 		        	   // entityManager.persist(meal); 
+		        	   //meal.getOrder().setRestaurant(restaurant); 
 		        	}
 		        
 		    } catch (Exception e) {

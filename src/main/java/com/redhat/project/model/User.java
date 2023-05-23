@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,6 +26,7 @@ public class User {
 	String role; 
 	
 	@OneToOne(mappedBy="user")
+	@Transient //imp
 	@JsonIgnore
 	Order order;
 	

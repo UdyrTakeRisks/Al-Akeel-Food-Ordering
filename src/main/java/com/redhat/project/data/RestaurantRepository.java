@@ -19,7 +19,7 @@ public class RestaurantRepository {
 	
 	public Restaurant findById(int id) {
 		return entityManager.find(Restaurant.class, id);
-	}
+	} 
 	
 	public List<Restaurant> getAllRestaurants() {
 		TypedQuery<Restaurant> query = 
@@ -35,7 +35,7 @@ public class RestaurantRepository {
 		            //entityManager.persist(restaurant.getMeals());
 		        }
 		    } catch (Exception e) {
-		        throw new EJBException(e); 
+		        throw new EJBException(e);  
 		  }
 		//entityManager.merge(restaurant); 
 	} 

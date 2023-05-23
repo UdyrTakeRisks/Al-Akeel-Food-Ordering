@@ -28,11 +28,10 @@ public class Restaurant {
 	
 	@OneToMany(mappedBy="restaurant", fetch=FetchType.EAGER, cascade = CascadeType.PERSIST) 
 	@JsonProperty("listOfMeals") 
-	//@JsonIgnore
 	private Set<Meal> listOfMeals;   
 	
 	@OneToMany(mappedBy="restaurant", fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)   
-	@Transient   
+	@Transient //imp   
 	@JsonIgnore
 	private Set<Order> orders;  // !!!! 
 	
