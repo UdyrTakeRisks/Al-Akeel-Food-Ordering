@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,9 +25,10 @@ public class User {
 	
 	String role; 
 	
-	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
+	@OneToOne(mappedBy="user")
+	@Transient //imp
 	@JsonIgnore
-	Set<Order> orders;
+	Order order;
 	
 	//getters  
 	
@@ -42,8 +45,8 @@ public class User {
 	}
 	 
 	@JsonIgnore
-	public Set<Order> getOrders() {
-		return orders;
+	public Order getOrders() {
+		return order;
 	}
 	
 	//setters
@@ -60,8 +63,8 @@ public class User {
 		this.role = role;
 	}
 	
-	public void setOrders(Set<Order> orders) {
-		this.orders = orders;
+	public void setOrders(Order order) {
+		this.order = order;  
 	}
 
 }

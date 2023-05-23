@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,10 +30,11 @@ public class Meal {
 	@JsonIgnore
 	private Restaurant restaurant; 
 	
-//	@ManyToOne
-//	@JoinColumn(name="orderId") 
-//	@JsonIgnore 
-//	private Order order;  // !!!!
+	@ManyToOne
+	@JoinColumn(name="orderId") 
+	@Transient
+	@JsonIgnore 
+	private Order order;  // !!!!
 	
 	//getters  
 	
@@ -52,10 +54,10 @@ public class Meal {
 		return restaurant;
 	}
 	
-//	@JsonIgnore
-//	public Order getOrder() {
-//		return order;
-//	}
+	@JsonIgnore
+	public Order getOrder() {
+		return order;
+	}
 	
 	//setters
 	
@@ -75,9 +77,9 @@ public class Meal {
 		this.restaurant = restaurant;
 	}
 	
-//	public void setOrder(Order order) {
-//		this.order = order;
-//	}
+	public void setOrder(Order order) {
+		this.order = order;
+	}
 	
 }
  

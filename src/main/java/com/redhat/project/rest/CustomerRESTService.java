@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 
 import java.util.List;
 
+import com.redhat.project.data.MealRepository;
 import com.redhat.project.data.OrderRepository;
 import com.redhat.project.data.RestaurantRepository;
 import com.redhat.project.data.UserRepository;
@@ -36,28 +37,40 @@ public class CustomerRESTService {
 	@Inject
 	UserRepository userRepo;
 	
+	@Inject
+	MealRepository mealRepo;
+	
+	User user = new User();
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("createOrder/{Id}")
 	public Order createOrder(Order order, @PathParam("Id") int Id) {
-		User user = new User();
+		
 		userRepo.saveUser(user);   
 		user = userRepo.findUserById(Id); 
 		
 		if(user.getRole() == "Customer" /*&& order.getRestaurant().getId() == Id*/) {
-			orderRepo.saveOrder(order); 
+			Restaurant res = restaurantRepo.findById(Id);
+			mealRepo.saveMeals(res);
+			orderRepo.saveOrder(order,res); 
 		}
-
+ 
 		return order;
 	}
+	
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("listOrders/{id}") 
 	public List<Order> listOrders(@PathParam("id") int id) {
-		return orderRepo.listAllOrdersForCustomer(id); // !!!!
+		user = userRepo.findUserById(id);
+		if(user.getRole() == "Customer" && user.getId() == id)
+			return orderRepo.listAllOrdersForCustomer(id); // !!!!
+		
+		return orderRepo.listAllOrdersForCustomer(id);  
+		
 	}
 	
 	
@@ -65,9 +78,11 @@ public class CustomerRESTService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("editOrder")
-	public void editOrder() {
+	public void editOrder(Order order) {
 		
+		orderRepo.editOrder(order);  
 	}
+	
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
