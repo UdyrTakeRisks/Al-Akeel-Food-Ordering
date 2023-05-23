@@ -36,13 +36,14 @@ public class CustomerRESTService {
 	@Inject
 	UserRepository userRepo;
 	
+	User user = new User();
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("createOrder/{Id}")
 	public Order createOrder(Order order, @PathParam("Id") int Id) {
-		User user = new User();
+		
 		userRepo.saveUser(user);   
 		user = userRepo.findUserById(Id); 
 		
@@ -53,11 +54,16 @@ public class CustomerRESTService {
 		return order;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("listOrders/{id}") 
 	public List<Order> listOrders(@PathParam("id") int id) {
-		return orderRepo.listAllOrdersForCustomer(id); // !!!!
+		user = userRepo.findUserById(id);
+		if(user.getRole() == "Customer" && user.getId() == id)
+			return orderRepo.listAllOrdersForCustomer(id); // !!!!
+		return (List<Order>) new IllegalArgumentException("Invalid Customer Id");
+		
 	}
 	
 	
@@ -65,9 +71,11 @@ public class CustomerRESTService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("editOrder")
-	public void editOrder() {
+	public void editOrder(Order order) {
 		
+		//orderRepo.editOrder();
 	}
+	
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

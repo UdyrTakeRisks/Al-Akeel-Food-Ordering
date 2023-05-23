@@ -42,7 +42,7 @@ public class Order {
 	@JsonProperty("orderStatus")
 	private String orderStatus; // preparing, delivered, canceled
 	
-	@ManyToOne 
+	@OneToOne 
 	@JoinColumn(name="userId")
 	private User user;
 	
