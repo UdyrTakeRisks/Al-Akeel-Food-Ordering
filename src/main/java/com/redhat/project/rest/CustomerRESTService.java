@@ -45,10 +45,8 @@ public class CustomerRESTService {
 		User user = new User();
 		userRepo.saveUser(user);   
 		user = userRepo.findUserById(Id); 
-
-	@Path("createOrder")
-	public void createOrder() {		
-		if(user.getRole() == "Customer") {
+		
+		if(user.getRole() == "Customer" /*&& order.getRestaurant().getId() == Id*/) {
 			orderRepo.saveOrder(order); 
 		}
 
@@ -58,11 +56,7 @@ public class CustomerRESTService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("listOrders/{id}") 
-
 	public List<Order> listOrders(@PathParam("id") int id) {
-
-	public List<Order> listAllOrders(@PathParam("id") int id) {
-
 		return orderRepo.listAllOrdersForCustomer(id); // !!!!
 	}
 	

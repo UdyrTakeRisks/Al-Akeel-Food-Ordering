@@ -30,7 +30,6 @@ public class Order {
 	@JsonIgnore
 	private double totalPrice;
 	
-
 	@OneToOne
 	@JsonIgnore
 	@JoinColumn(name="runnerId")
@@ -39,7 +38,6 @@ public class Order {
 	@ManyToOne  
 	@JoinColumn(name="restaurantId")
 	private Restaurant restaurant;   // !!!!
-
 	
 	@JsonProperty("orderStatus")
 	private String orderStatus; // preparing, delivered, canceled
@@ -72,15 +70,6 @@ public class Order {
 	public Restaurant getRestaurant() {
 		return restaurant;
 	}
-=======
-//	public Runner getRunner() {
-//		return runner;
-//	}
-	
-//	public Restaurant getRestaurant() {
-//		return restaurant;
-//	}
->>>>>>> 87dd8f157f51ddb945a282a89d3eb60d943ab842
 	 
 	public String getOrderStatus() {
 		return orderStatus;
@@ -105,13 +94,13 @@ public class Order {
 		this.totalPrice = totalPrice; 
 	}
 	
-//	public void setRunner(Runner runner) {
-//		this.runner = runner;
-//	}
+	public void setRunner(Runner runner) {
+		this.runner = runner;
+	}
 	
-//	public void setRestaurant(Restaurant restaurant) {
-//		this.restaurant = restaurant;
-//	}
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
 
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;

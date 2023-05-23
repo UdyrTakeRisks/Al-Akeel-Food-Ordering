@@ -52,7 +52,6 @@ public class RestaurantRESTService {
 	@Produces(MediaType.APPLICATION_JSON) 
 	@JsonDeserialize
 	@Path("editMenu/{Id}")
-<<<<<<< HEAD
 	public Set<Meal> editRestaurantMenu(Restaurant newRes, @PathParam("Id") int Id) {
 		Restaurant restaurant = restaurantRepo.findById(Id);
 		if(restaurant.getId() == Id) {
@@ -60,14 +59,6 @@ public class RestaurantRESTService {
 			newRes.setMeals(restaurant.getMeals()); 
 		} 
 		return newRes.getMeals();     
-=======
-	public Set<Meal> editRestaurantMenu(Set<Meal> meals, @PathParam("Id") int Id) {
-		Restaurant restaurant = restaurantRepo.findById(Id);
-		if(restaurant.getId() == Id) {
-			mealRepo.editMeals(meals, restaurant);   
-		}
-		return restaurant.getMeals();   
->>>>>>> 87dd8f157f51ddb945a282a89d3eb60d943ab842
 	}
 	
 	@GET
