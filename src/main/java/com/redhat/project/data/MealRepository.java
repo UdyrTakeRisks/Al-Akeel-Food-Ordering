@@ -32,9 +32,15 @@ public class MealRepository {
 		  }
 	}
 	
+<<<<<<< HEAD
 	public void editMeals(Restaurant restaurant) {
 		 try {
 		        if (restaurant != null) {     
+=======
+	public void editMeals(Set<Meal> meals, Restaurant restaurant) {
+		 try {
+		        if (meals != null) {     
+>>>>>>> 87dd8f157f51ddb945a282a89d3eb60d943ab842
 		            
 		        	for(Meal meal : restaurant.getMeals()) {
 		        		entityManager.merge(meal);
